@@ -27,7 +27,9 @@ SECRET_KEY = 'alo%#i0y9#c^nb_i*$=xp35f^%n3bk0m-&fb5bnxv345r2zz$!'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'prem2282.pythonanywhere.com',
+]
 
 
 # Application definition
@@ -123,7 +125,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # pip install django-rest-auth
 # pip install djangorestframework-jwt
 # pip install django-allauth
-# pip install django-cors-corsheaders
+# pip install django-cors-headers
 # pip install djangorestframework
 # pip install markdown       # Markdown support for the browsable API.
 # pip install django-filter  # Filtering support
