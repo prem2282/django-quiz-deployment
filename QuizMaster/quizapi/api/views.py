@@ -147,7 +147,7 @@ class GroupingSubAPIView(ListAPIView):
 
 class GroupingLessonsAPIView(ListAPIView):
     queryset = Grouping.objects.all()
-    serializer_class = GroupingSubSerializer
+    serializer_class = GroupingLessonsSerializer
     def get_queryset(self,*args,**kwargs):
         queryset_list = Grouping.objects.all()
         q1 = self.request.GET.get("board")

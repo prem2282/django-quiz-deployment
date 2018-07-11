@@ -28,6 +28,7 @@ SECRET_KEY = 'alo%#i0y9#c^nb_i*$=xp35f^%n3bk0m-&fb5bnxv345r2zz$!'
 DEBUG = True
 
 ALLOWED_HOSTS = [
+    '127.0.0.1',
     'prem2282.pythonanywhere.com',
 ]
 
