@@ -53,17 +53,17 @@ class GroupingCreateSerializer(ModelSerializer):
 class GroupingBoardSerializer(ModelSerializer):
     class Meta:
         model = Grouping
-        fields = 'board'
+        fields = ['board']
 
 class GroupingStdSerializer(ModelSerializer):
     class Meta:
         model = Grouping
-        fields = 'standard'
+        fields = ['standard']
 
 class GroupingSubSerializer(ModelSerializer):
     class Meta:
         model = Grouping
-        fields = 'subject'
+        fields = ['subject']
 
 class GroupingLessonsSerializer(ModelSerializer):
     class Meta:
