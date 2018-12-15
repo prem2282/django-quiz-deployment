@@ -1,6 +1,6 @@
 from rest_framework.serializers import ModelSerializer
 
-from quizapi.models import QuestionBank, Grouping
+from quizapi.models import QuestionBank, Grouping, UserDetails, UserQuiz, PMPQuestionBank
 from django.contrib.auth import get_user_model
 User = get_user_model()
 
@@ -24,6 +24,31 @@ class UserSerializer(ModelSerializer):
 
             return user
 
+
+class UserDetailsSerializer(ModelSerializer):
+    class Meta:
+        model = UserDetails
+        fields = '__all__'
+
+class UserQuizSerializer(ModelSerializer):
+    class Meta:
+        model = UserQuiz
+        fields = '__all__'
+
+class PMPQuestionBankSerializer(ModelSerializer):
+    class Meta:
+        model = PMPQuestionBank
+        fields = '__all__'
+
+class PMPQuestionBankIdSerializer(ModelSerializer):
+    class Meta:
+        model = PMPQuestionBank
+        fields = '__all__'
+
+class PMPQuestionBankCreateSerializer(ModelSerializer):
+    class Meta:
+        model = PMPQuestionBank
+        fields = '__all__'
 
 class QuestionBankSerializer(ModelSerializer):
     class Meta:

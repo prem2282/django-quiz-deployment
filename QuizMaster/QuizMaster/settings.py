@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'quizapi',
     'rest_framework',
+    'import_export',
     'rest_auth',
     'allauth',
     'allauth.account',

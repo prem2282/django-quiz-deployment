@@ -14,7 +14,7 @@ UpdateAPIView,
 DestroyAPIView,
 )
 
-from quizapi.models import QuestionBank, Grouping
+from quizapi.models import QuestionBank, Grouping, PMPQuestionBank, UserQuiz, UserDetails
 from django.contrib.auth import get_user_model
 User = get_user_model()
 
@@ -23,6 +23,9 @@ from .serializers import (
 QuestionBankSerializer,
 QuestionBankIdSerializer,
 QuestionBankCreateSerializer,
+PMPQuestionBankSerializer,
+PMPQuestionBankIdSerializer,
+PMPQuestionBankCreateSerializer,
 GroupingSerializer,
 GroupingBoardSerializer,
 GroupingStdSerializer,
@@ -30,7 +33,8 @@ GroupingSubSerializer,
 GroupingLessonsSerializer,
 GroupingCreateSerializer,
 UserSerializer,
-
+UserDetailsSerializer,
+UserQuizSerializer,
 )
 
 
@@ -53,60 +57,160 @@ class CreateUserAPIView(CreateAPIView):
     ]
     serializer_class = UserSerializer
 
+class UserDetailsCreateAPIView(CreateAPIView):
+    queryset = UserDetails.objects.all()
+    serializer_class = UserDetailsSerializer
+
+class UserQuizCreateAPIView(CreateAPIView):
+    queryset = UserQuiz.objects.all()
+    serializer_class = UserQuizSerializer
+
+class PMPQuestionBankCreateAPIView(CreateAPIView):
+    queryset = PMPQuestionBank.objects.all()
+    serializer_class = PMPQuestionBankSerializer
+
+
+class PMPQuestionBankListAPIView(ListAPIView):
+    queryset = PMPQuestionBank.objects.all()
+    serializer_class = QuestionBankSerializer
+
+
+
 class QuestionBankCreateAPIView(CreateAPIView):
-    quesyset = QuestionBank.objects.all()
+    queryset = QuestionBank.objects.all()
     serializer_class = QuestionBankSerializer
 
 class QuestionBankListIdAPIView(ListAPIView):
-    quesyset = QuestionBank.objects.all()
+    queryset = QuestionBank.objects.all()
     serializer_class = QuestionBankIdSerializer
 
 
 class QuestionBankListAPIView(ListAPIView):
-    quesyset = QuestionBank.objects.all()
+    queryset = QuestionBank.objects.all()
     serializer_class = QuestionBankSerializer
 
     def get_queryset(self, *args, **kwargs):
         queryset_list = QuestionBank.objects.all()
+        q4a =''
         q1 = self.request.GET.get("sub")
         q2 = self.request.GET.get("std")
         q3 = self.request.GET.get("lessons")
+        q4a = self.request.GET.get("questionSet")
 
+        if q4a is not None:
+            q4 = list(q4a.split(","))
         if (q1 and q2 and q3):
-            quesryset_list = queryset_list.filter(
-            Q(subject_iexact=q1)&
-            Q(standard_iexact=q2)&
-            Q(lessonNum_iexact=q3)
-            ).distinct().order_by('?')[:15]
+            queryset_list = queryset_list.filter(
+            Q(subject__iexact=q1)&
+            Q(standard__iexact=q2)&
+            Q(lessonNum__iexact=q3)
+            ).distinct()
         if (q1 and q2):
-            quesryset_list = queryset_list.filter(
-            Q(subject_iexact=q1)&
-            Q(standard_iexact=q2)
-            ).distinct().order_by('?')[:15]
+            queryset_list = queryset_list.filter(
+            Q(subject__iexact=q1)&
+            Q(standard__iexact=q2)
+            ).distinct()
         elif (q2 and q3):
-            quesryset_list = queryset_list.filter(
-            Q(standard_iexact=q2)&
-            Q(lessonNum_iexact=q3)
-            ).distinct().order_by('?')[:15]
-        if (q1):
-            quesryset_list = queryset_list.filter(
-            Q(subject_iexact=q1)
-            ).distinct().order_by('?')[:15]
+            queryset_list = queryset_list.filter(
+            Q(standard__iexact=q2)&
+            Q(lessonNum__iexact=q3)
+            ).distinct()
+        elif (q1):
+            queryset_list = queryset_list.filter(
+            Q(subject__iexact=q1)
+            ).distinct()
+        elif (q4):
+            queryset_list = queryset_list.filter(
+            Q(id__in=q4)
+            ).distinct()
 
         return queryset_list
 
 class QuestionBankDetailAPIView(RetrieveAPIView):
-    quesyset = QuestionBank.objects.all()
+    queryset = QuestionBank.objects.all()
     serializer_class = QuestionBankSerializer
 
+class PMPQuestionBankDetailAPIView(RetrieveAPIView):
+    queryset = PMPQuestionBank.objects.all()
+    serializer_class = PMPQuestionBankSerializer
+
+class UserDetailsDetailAPIView(RetrieveAPIView):
+    queryset = UserDetails.objects.all()
+    serializer_class = UserDetailsSerializer
+
+class UserQuizDetailAPIView(RetrieveAPIView):
+    queryset = UserQuiz.objects.all()
+    serializer_class = UserQuizSerializer
+
 class QuestionBankUpdateAPIView(RetrieveUpdateAPIView):
-    quesyset = QuestionBank.objects.all()
+    queryset = QuestionBank.objects.all()
     serializer_class = QuestionBankSerializer
+
+class PMPQuestionBankUpdateAPIView(RetrieveUpdateAPIView):
+    queryset = PMPQuestionBank.objects.all()
+    serializer_class = PMPQuestionBankSerializer
+
+class UserDetailsUpdateAPIView(RetrieveUpdateAPIView):
+    queryset = UserDetails.objects.all()
+    serializer_class = UserDetailsSerializer
+
+class UserQuizUpdateAPIView(RetrieveUpdateAPIView):
+    queryset = UserQuiz.objects.all()
+    serializer_class = UserQuizSerializer
 
 
 class QuestionBankDeleteAPIView(DestroyAPIView):
-    quesyset = QuestionBank.objects.all()
+    queryset = QuestionBank.objects.all()
     serializer_class = QuestionBankSerializer
+
+class PMPQuestionBankDeleteAPIView(DestroyAPIView):
+    queryset = PMPQuestionBank.objects.all()
+    serializer_class = PMPQuestionBankSerializer
+
+
+class UserDetailsDeleteAPIView(DestroyAPIView):
+    queryset = UserDetails.objects.all()
+    serializer_class = UserDetailsSerializer
+
+
+class UserQuizDeleteAPIView(DestroyAPIView):
+    queryset = UserQuiz.objects.all()
+    serializer_class = UserQuizSerializer
+
+class UserDetailsListAPIView(ListAPIView):
+    queryset = UserDetails.objects.all()
+    serializer_class = UserDetailsSerializer
+
+    def get_queryset(self,*args,**kwargs):
+        queryset_list = UserDetails.objects.all()
+        q1 = self.request.GET.get("userId")
+        if (q1):
+            queryset_list = queryset_list.filter(
+            Q(userId__iexact=q1)
+            ).distinct()
+        return queryset_list
+
+class UserQuizListAPIView(ListAPIView):
+    queryset = UserQuiz.objects.all()
+    serializer_class = UserQuizSerializer
+
+    def get_queryset(self,*args,**kwargs):
+        queryset_list = UserQuiz.objects.all()
+        q1 = self.request.GET.get("userId")
+        q2 = self.request.GET.get("groupId")
+        q3 = self.request.GET.get("quizStatus")
+        if (q1 and q2 and q3):
+            queryset_list = queryset_list.filter(
+            Q(userId__iexact=q1)&
+            Q(groupId__iexact=q2)&
+            Q(quizStatus__iexact=q3)
+            ).distinct().order_by('-updatedTime')
+        elif (q1):
+            queryset_list = queryset_list.filter(
+            Q(userId__iexact=q1)
+            ).distinct().order_by('-updatedTime')
+        return queryset_list
+
 
 class GroupingListAPIView(ListAPIView):
     queryset = Grouping.objects.all()

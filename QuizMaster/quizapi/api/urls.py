@@ -11,6 +11,25 @@ from quizapi.api.views import (
     QuestionBankUpdateAPIView,
     QuestionBankCreateAPIView,
 
+    PMPQuestionBankListAPIView,
+    PMPQuestionBankDetailAPIView,
+    PMPQuestionBankDeleteAPIView,
+    PMPQuestionBankUpdateAPIView,
+    PMPQuestionBankCreateAPIView,
+
+
+    UserDetailsListAPIView,
+    UserDetailsDetailAPIView,
+    UserDetailsDeleteAPIView,
+    UserDetailsUpdateAPIView,
+    UserDetailsCreateAPIView,
+
+    UserQuizListAPIView,
+    UserQuizDetailAPIView,
+    UserQuizDeleteAPIView,
+    UserQuizUpdateAPIView,
+    UserQuizCreateAPIView,
+
     GroupingListAPIView,
     GroupingDetailAPIView,
     GroupingDeleteAPIView,
@@ -33,6 +52,22 @@ path('QuestionList/create',QuestionBankCreateAPIView.as_view(),name='QuestionBan
 path('QuestionList/<int:pk>',QuestionBankDetailAPIView.as_view(),name='QuestionBankDetailAPIView'),
 path('QuestionList/edit/<int:pk>',QuestionBankUpdateAPIView.as_view(),name='QuestionBankUpdateAPIView'),
 path('QuestionList/delete/<int:pk>',QuestionBankDeleteAPIView.as_view(),name='QuestionBankDeleteAPIView'),
+
+path('PMPQuestionList/',PMPQuestionBankListAPIView.as_view(),name='PMPQuestionBankListAPIView'),
+path('PMPQuestionList/create',PMPQuestionBankCreateAPIView.as_view(),name='PMPQuestionBankCreateAPIView'),
+path('PMPQuestionList/<int:pk>',PMPQuestionBankDetailAPIView.as_view(),name='PMPQuestionBankDetailAPIView'),
+path('PMPQuestionList/edit/<int:pk>',PMPQuestionBankUpdateAPIView.as_view(),name='PMPQuestionBankUpdateAPIView'),
+path('PMPQuestionList/delete/<int:pk>',PMPQuestionBankDeleteAPIView.as_view(),name='PMPQuestionBankDeleteAPIView'),
+
+path('UserDetails/',UserDetailsListAPIView.as_view(),name='UserDetailsListAPIView'),
+path('UserDetails/create',UserDetailsCreateAPIView.as_view(),name='UserDetailsCreateAPIView'),
+path('UserDetails/<int:pk>',UserDetailsDetailAPIView.as_view(),name='UserDetailsDetailAPIView'),
+path('UserDetails/edit/<int:pk>',UserDetailsUpdateAPIView.as_view(),name='UserDetailsUpdateAPIView'),
+
+path('UserQuiz/',UserQuizListAPIView.as_view(),name='UserQuizListAPIView'),
+path('UserQuiz/create',UserQuizCreateAPIView.as_view(),name='UserQuizCreateAPIView'),
+path('UserQuiz/<int:pk>',UserQuizDetailAPIView.as_view(),name='UserQuizDetailAPIView'),
+path('UserQuiz/edit/<int:pk>',UserQuizUpdateAPIView.as_view(),name='UserQuizUpdateAPIView'),
 
 path('Grouping/',GroupingListAPIView.as_view(),name='GroupingListAPIView'),
 path('Grouping/board/',GroupingBoardAPIView.as_view(),name='GroupingBoardAPIView'),
