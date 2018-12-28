@@ -152,6 +152,20 @@ class UserDetails(models.Model):
     def __str__(self):
         return '%s | %s  ' % (self.userId, self.userName)
 
+class UserPackage(models.Model):
+    userId = models.CharField(max_length=50)
+    paymentGateway = models.CharField(max_length=20)
+    packageId = models.CharField(max_length=20,blank=True)
+    paymentId = models.CharField(max_length=200,blank=True)
+    paymentId2 = models.CharField(max_length=200,blank=True)
+    requestId = models.CharField(max_length=200,blank=True)
+    paymentDate = models.CharField(max_length=50,blank=True)
+    startDate = models.CharField(max_length=50,blank=True)
+    endDate = models.CharField(max_length=50,blank=True)
+
+    def __str__(self):
+        return '%s | %s  ' % (self.userId, self.packageId)
+
 class UserQuiz(models.Model):
     userId = models.CharField(max_length=50)
     groupId = models.CharField(max_length=20,blank=True)
@@ -164,4 +178,9 @@ class UserQuiz(models.Model):
     quizStatus = models.CharField(max_length=50,blank=True)
 
     def __str__(self):
-        return '%s | %s ' % (self.userId, self.groupId)    
+        return '%s | %s ' % (self.userId, self.groupId)
+
+class Constants(models.Model):
+    varName = models.CharField(max_length=40,blank=True)
+    varSeqNo = models.PositiveIntegerField(default=0)
+    varValue = models.CharField(max_length=500,blank=True)

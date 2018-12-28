@@ -1,5 +1,5 @@
 from django.contrib import admin
-from quizapi.models import QuestionBank,Grouping,UserDetails,UserQuiz,PMPQuestionBank
+from quizapi.models import QuestionBank,Grouping,UserDetails,UserQuiz,PMPQuestionBank,UserPackage,Constants
 from import_export.admin import ImportExportModelAdmin
 # Register your models here.
 # pip install django-import-export
@@ -23,6 +23,17 @@ class GroupingAdmin(ImportExportModelAdmin):
 class UserDetailsAdmin(ImportExportModelAdmin):
     list_display = ('id','userId','userName','userEmail','imageUrl','registeredDate','loginTime')
     list_editable = ('userId','userName','userEmail','imageUrl','registeredDate','loginTime')
+
+@admin.register(UserPackage)
+class UserPackageAdmin(ImportExportModelAdmin):
+    list_display = ('id','userId','paymentGateway','packageId','paymentId','paymentId2','requestId','paymentDate','startDate','endDate')
+    list_editable = ('userId','paymentGateway','packageId','paymentId','paymentId2','requestId','paymentDate','startDate','endDate')
+
+@admin.register(Constants)
+class ConstantsAdmin(ImportExportModelAdmin):
+    list_display = ('id','varName','varSeqNo','varValue')
+    list_editable = ('varName','varSeqNo','varValue')
+
 
 @admin.register(UserQuiz)
 class UserQuizAdmin(ImportExportModelAdmin):

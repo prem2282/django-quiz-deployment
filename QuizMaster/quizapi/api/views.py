@@ -14,7 +14,7 @@ UpdateAPIView,
 DestroyAPIView,
 )
 
-from quizapi.models import QuestionBank, Grouping, PMPQuestionBank, UserQuiz, UserDetails
+from quizapi.models import QuestionBank, Grouping, PMPQuestionBank, UserQuiz, UserDetails, UserPackage, Constants
 from django.contrib.auth import get_user_model
 User = get_user_model()
 
@@ -35,6 +35,8 @@ GroupingCreateSerializer,
 UserSerializer,
 UserDetailsSerializer,
 UserQuizSerializer,
+UserPackageSerializer,
+ConstantsSerializer,
 )
 
 
@@ -60,6 +62,14 @@ class CreateUserAPIView(CreateAPIView):
 class UserDetailsCreateAPIView(CreateAPIView):
     queryset = UserDetails.objects.all()
     serializer_class = UserDetailsSerializer
+
+class ConstantsCreateAPIView(CreateAPIView):
+    queryset = Constants.objects.all()
+    serializer_class = ConstantsSerializer
+
+class UserPackageCreateAPIView(CreateAPIView):
+    queryset = UserPackage.objects.all()
+    serializer_class = UserPackageSerializer
 
 class UserQuizCreateAPIView(CreateAPIView):
     queryset = UserQuiz.objects.all()
@@ -138,6 +148,14 @@ class UserDetailsDetailAPIView(RetrieveAPIView):
     queryset = UserDetails.objects.all()
     serializer_class = UserDetailsSerializer
 
+class ConstantsDetailAPIView(RetrieveAPIView):
+    queryset = Constants.objects.all()
+    serializer_class = ConstantsSerializer
+
+class UserPackageDetailAPIView(RetrieveAPIView):
+    queryset = UserPackage.objects.all()
+    serializer_class = UserPackageSerializer
+
 class UserQuizDetailAPIView(RetrieveAPIView):
     queryset = UserQuiz.objects.all()
     serializer_class = UserQuizSerializer
@@ -153,6 +171,14 @@ class PMPQuestionBankUpdateAPIView(RetrieveUpdateAPIView):
 class UserDetailsUpdateAPIView(RetrieveUpdateAPIView):
     queryset = UserDetails.objects.all()
     serializer_class = UserDetailsSerializer
+
+class ConstantsUpdateAPIView(RetrieveUpdateAPIView):
+    queryset = Constants.objects.all()
+    serializer_class = ConstantsSerializer
+
+class UserPackageUpdateAPIView(RetrieveUpdateAPIView):
+    queryset = UserPackage.objects.all()
+    serializer_class = UserPackageSerializer
 
 class UserQuizUpdateAPIView(RetrieveUpdateAPIView):
     queryset = UserQuiz.objects.all()
@@ -172,6 +198,13 @@ class UserDetailsDeleteAPIView(DestroyAPIView):
     queryset = UserDetails.objects.all()
     serializer_class = UserDetailsSerializer
 
+class ConstantsDeleteAPIView(DestroyAPIView):
+    queryset = Constants.objects.all()
+    serializer_class = ConstantsSerializer
+
+class UserPackageDeleteAPIView(DestroyAPIView):
+    queryset = UserPackage.objects.all()
+    serializer_class = UserPackageSerializer
 
 class UserQuizDeleteAPIView(DestroyAPIView):
     queryset = UserQuiz.objects.all()
@@ -183,6 +216,33 @@ class UserDetailsListAPIView(ListAPIView):
 
     def get_queryset(self,*args,**kwargs):
         queryset_list = UserDetails.objects.all()
+        q1 = self.request.GET.get("userId")
+        if (q1):
+            queryset_list = queryset_list.filter(
+            Q(userId__iexact=q1)
+            ).distinct()
+        return queryset_list
+
+class ConstantsListAPIView(ListAPIView):
+    queryset = Constants.objects.all()
+    serializer_class = ConstantsSerializer
+
+    def get_queryset(self,*args,**kwargs):
+        queryset_list = Constants.objects.all()
+        q1 = self.request.GET.get("varName")
+        if (q1):
+            queryset_list = queryset_list.filter(
+            Q(varName__iexact=q1)
+            ).distinct()
+        return queryset_list
+
+
+class UserPackageListAPIView(ListAPIView):
+    queryset = UserPackage.objects.all()
+    serializer_class = UserPackageSerializer
+
+    def get_queryset(self,*args,**kwargs):
+        queryset_list = UserPackage.objects.all()
         q1 = self.request.GET.get("userId")
         if (q1):
             queryset_list = queryset_list.filter(
