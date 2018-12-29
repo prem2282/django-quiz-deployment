@@ -71,12 +71,12 @@ path('PMPQuestionList/<int:pk>',PMPQuestionBankDetailAPIView.as_view(),name='PMP
 path('PMPQuestionList/edit/<int:pk>',PMPQuestionBankUpdateAPIView.as_view(),name='PMPQuestionBankUpdateAPIView'),
 path('PMPQuestionList/delete/<int:pk>',PMPQuestionBankDeleteAPIView.as_view(),name='PMPQuestionBankDeleteAPIView'),
 
-# path('UserDetails/',UserDetailsListAPIView.as_view(),name='UserDetailsListAPIView'),
+path('UserDetails/',UserDetailsListAPIView.as_view(),name='UserDetailsListAPIView'),
 path('UserDetails/create',UserDetailsCreateAPIView.as_view(),name='UserDetailsCreateAPIView'),
 path('UserDetails/<int:pk>',UserDetailsDetailAPIView.as_view(),name='UserDetailsDetailAPIView'),
 path('UserDetails/edit/<int:pk>',UserDetailsUpdateAPIView.as_view(),name='UserDetailsUpdateAPIView'),
 
-# path('UserDetails/',UserDetailsListAPIView.as_view(),name='UserDetailsListAPIView'),
+path('UserPackage/',UserPackageListAPIView.as_view(),name='UserPackageListAPIView'),
 path('UserPackage/create',UserPackageCreateAPIView.as_view(),name='UserPackageCreateAPIView'),
 path('UserPackage/<int:pk>',UserPackageDetailAPIView.as_view(),name='UserPackageDetailAPIView'),
 # path('UserPackage/edit/<int:pk>',UserPackageUpdateAPIView.as_view(),name='UserPackageUpdateAPIView'),
