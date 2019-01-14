@@ -65,10 +65,12 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-CORS_ORIGIN_WHITELIST = (
+CORS_ORIGIN_WHITELIST = [
     'localhost:3000',
     'https://pmp-quiz-master.herokuapp.com/',
-)
+]
+
+
 
 ROOT_URLCONF = 'QuizMaster.urls'
 
