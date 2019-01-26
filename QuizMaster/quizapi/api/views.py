@@ -101,41 +101,31 @@ class QuestionBankListAPIView(ListAPIView):
 
     def get_queryset(self, *args, **kwargs):
         queryset_list = QuestionBank.objects.all()
-        q4a =''
-        q4 = ''
-        q1 = self.request.GET.get("sub")
-        q2 = self.request.GET.get("std")
-        q3 = self.request.GET.get("lessons")
-        q4a = self.request.GET.get("questionSet")
-
-        if q4a is not None:
-            q4 = list(q4a.split(","))
-        if (q1 and q2 and q3):
-            queryset_list = queryset_list.filter(
-            Q(subject__iexact=q1)&
-            Q(standard__iexact=q2)&
-            Q(lessonNum__iexact=q3)
+        queryset_final = ''
+        q6 =''
+        q6a = ''
+        q1 = self.request.GET.get("category")
+        q2 = self.request.GET.get("board")
+        q3 = self.request.GET.get("standard")
+        q4 = self.request.GET.get("subject")
+        q5 = self.request.GET.get("lessonNum")
+        q6a = self.request.GET.get("questionSet")
+        if q6a is not None:
+            q6 = list(q6a.split(","))
+        if (q1 and q2 and q3 and q4 and q5):
+            queryset_final = queryset_list.filter(
+            Q(category__iexact=q1)&
+            Q(board__iexact=q2)&
+            Q(standard__iexact=q3)&
+            Q(subject__iexact=q4)&
+            Q(lessonNum__iexact=q5)
             ).distinct()
-        if (q1 and q2):
-            queryset_list = queryset_list.filter(
-            Q(subject__iexact=q1)&
-            Q(standard__iexact=q2)
-            ).distinct()
-        elif (q2 and q3):
-            queryset_list = queryset_list.filter(
-            Q(standard__iexact=q2)&
-            Q(lessonNum__iexact=q3)
-            ).distinct()
-        elif (q1):
-            queryset_list = queryset_list.filter(
-            Q(subject__iexact=q1)
-            ).distinct()
-        elif (q4):
-            queryset_list = queryset_list.filter(
-            Q(id__in=q4)
+        elif (q6):
+            queryset_final = queryset_list.filter(
+            Q(id__in=q6)
             ).distinct()
 
-        return queryset_list
+        return queryset_final
 
 class QuestionBankDetailAPIView(RetrieveAPIView):
     queryset = QuestionBank.objects.all()
