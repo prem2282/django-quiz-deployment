@@ -81,8 +81,8 @@ board_choice = (
 )
 
 class QuestionBank(models.Model):
-    standard = models.CharField(max_length=10,choices=std_choice)
-    subject = models.CharField(max_length=10,choices=sub_choice)
+    standard = models.CharField(max_length=10)
+    subject = models.CharField(max_length=10)
     difficulty = models.PositiveIntegerField(choices=diff_choice)
     marks = models.PositiveIntegerField(choices=mark_choice)
     lessonNum = models.PositiveIntegerField(default=1)
@@ -106,8 +106,8 @@ class QuestionBank(models.Model):
         return '%s | %s | %s' % (self.standard, self.subject, self.Question)
 
 class PMPQuestionBank(models.Model):
-    standard = models.CharField(max_length=10,choices=std_choice)
-    subject = models.CharField(max_length=10,choices=sub_choice)
+    standard = models.CharField(max_length=10,choices=PMP_std_choice)
+    subject = models.CharField(max_length=10,choices=PMP_sub_choice)
     difficulty = models.PositiveIntegerField(choices=diff_choice)
     marks = models.PositiveIntegerField(choices=mark_choice)
     lessonNum = models.PositiveIntegerField(default=1)
@@ -131,9 +131,9 @@ class PMPQuestionBank(models.Model):
         return '%s | %s | %s' % (self.standard, self.subject, self.Question)
 
 class Grouping(models.Model):
-    board = models.CharField(max_length=10, choices=board_choice)
-    standard = models.CharField(max_length=10,choices=std_choice)
-    subject = models.CharField(max_length=10,choices=sub_choice)
+    board = models.CharField(max_length=10)
+    standard = models.CharField(max_length=10)
+    subject = models.CharField(max_length=10)
     lessonNum = models.PositiveIntegerField(default=1)
     lessonName = models.CharField(max_length=50, blank=True)
 
