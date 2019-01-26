@@ -280,7 +280,7 @@ class GroupingBoardAPIView(ListAPIView):
     queryset = Grouping.objects.all()
     serializer_class = GroupingBoardSerializer
     def get_queryset(self,*args,**kwargs):
-        queryset_list = Grouping.objects.values("board").distinct()
+        queryset_list = Grouping.objects.values("category","board","standard","subject").distinct()
         return queryset_list
 
 class GroupingStdAPIView(ListAPIView):
@@ -288,11 +288,13 @@ class GroupingStdAPIView(ListAPIView):
     serializer_class = GroupingStdSerializer
     def get_queryset(self,*args,**kwargs):
         queryset_list = Grouping.objects.all()
+        q0 = self.request.GET.get("category")
         q1 = self.request.GET.get("board")
         if (q1):
             queryset_list = queryset_list.filter(
+            Q(category_iexact=q0)&
             Q(board_iexact=q1)
-            ).values("standard").distinct().order_by("standard")
+            ).values("standard","subject").distinct().order_by("standard")
         return queryset_list
 
 class GroupingSubAPIView(ListAPIView):
@@ -300,10 +302,12 @@ class GroupingSubAPIView(ListAPIView):
     serializer_class = GroupingSubSerializer
     def get_queryset(self,*args,**kwargs):
         queryset_list = Grouping.objects.all()
+        q0 = self.request.GET.get("category")
         q1 = self.request.GET.get("board")
         q2 = self.request.GET.get("std")
         if (q1 and q2):
             queryset_list = queryset_list.filter(
+            Q(category_iexact=q0)&
             Q(board_iexact=q1)&
             Q(standard_iexact=q2)
             ).values("subject").distinct()
@@ -314,11 +318,13 @@ class GroupingLessonsAPIView(ListAPIView):
     serializer_class = GroupingLessonsSerializer
     def get_queryset(self,*args,**kwargs):
         queryset_list = Grouping.objects.all()
+        q0 = self.request.GET.get("category")
         q1 = self.request.GET.get("board")
         q2 = self.request.GET.get("std")
         q3 = self.request.GET.get("sub")
         if (q1 and q2 and q3):
             queryset_list = queryset_list.filter(
+            Q(category_iexact=q0)&
             Q(board_iexact=q1)&
             Q(standard_iexact=q2)&
             Q(subject_iexact=q3)
