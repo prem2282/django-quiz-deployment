@@ -102,6 +102,7 @@ class QuestionBankListAPIView(ListAPIView):
     def get_queryset(self, *args, **kwargs):
         queryset_list = QuestionBank.objects.all()
         q4a =''
+        q4 = ''
         q1 = self.request.GET.get("sub")
         q2 = self.request.GET.get("std")
         q3 = self.request.GET.get("lessons")
