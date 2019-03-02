@@ -108,17 +108,19 @@ class QuestionBankListAPIView(ListAPIView):
         q2 = self.request.GET.get("board")
         q3 = self.request.GET.get("standard")
         q4 = self.request.GET.get("subject")
-        q5 = self.request.GET.get("lessonNum")
+        q5a = self.request.GET.get("lessonNum")
+        if q5a is not None:
+            q5 = list(q5a.split("-"))
         q6a = self.request.GET.get("questionSet")
         if q6a is not None:
-            q6 = list(q6a.split(","))
+            q6 = list(q6a.split("-"))
         if (q1 and q2 and q3 and q4 and q5):
             queryset_final = queryset_list.filter(
             Q(category__iexact=q1)&
             Q(board__iexact=q2)&
             Q(standard__iexact=q3)&
             Q(subject__iexact=q4)&
-            Q(lessonNum__iexact=q5)
+            Q(lessonNum__in=q5)
             ).distinct()
         elif (q6):
             queryset_final = queryset_list.filter(
