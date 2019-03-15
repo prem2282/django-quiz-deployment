@@ -173,7 +173,7 @@ class UserPackage(models.Model):
 
 class UserQuiz(models.Model):
     userId = models.ForeignKey(UserDetails,to_field="userId", db_column="userId", on_delete=models.CASCADE)
-    groupId =  models.ForeignKey(max_length=50,blank=True)
+    groupId =  models.CharField(max_length=50,blank=True)
     customId = models.CharField(max_length=50,blank=True)
     questionSet = models.CharField(max_length=500,blank=True)
     answerSet = models.CharField(max_length=500,blank=True)
