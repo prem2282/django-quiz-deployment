@@ -51,8 +51,13 @@ INSTALLED_APPS = [
     'allauth.account',
     'rest_auth.registration',
     'corsheaders',
+    'graphene_django',
 
 ]
+
+GRAPHENE = {
+    'SCHEMA': 'QuizMaster.schema.schema'
+}
 
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
