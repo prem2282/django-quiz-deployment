@@ -158,7 +158,7 @@ class UserDetails(models.Model):
         return '%s | %s  ' % (self.userId, self.userName)
 
 class UserPackage(models.Model):
-    userId = models.ForeignKey(UserDetails,to_field="userId", db_column="userId", on_delete=models.CASCADE)
+    userId = models.CharField(max_length=50,blank=True)
     paymentGateway = models.CharField(max_length=20)
     packageId = models.CharField(max_length=20,blank=True)
     paymentId = models.CharField(max_length=200,blank=True)
@@ -172,7 +172,7 @@ class UserPackage(models.Model):
         return '%s | %s  ' % (self.userId, self.packageId)
 
 class UserQuiz(models.Model):
-    userId = models.ForeignKey(UserDetails,to_field="userId", db_column="userId", on_delete=models.CASCADE)
+    userId = models.CharField(max_length=50,blank=True)
     groupId =  models.CharField(max_length=50,blank=True)
     customId = models.CharField(max_length=50,blank=True)
     questionSet = models.CharField(max_length=500,blank=True)
