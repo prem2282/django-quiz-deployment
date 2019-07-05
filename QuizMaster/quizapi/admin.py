@@ -1,5 +1,5 @@
 from django.contrib import admin
-from quizapi.models import QuestionBank,Grouping,UserDetails,UserQuiz,PMPQuestionBank,UserPackage,Constants
+from quizapi.models import QuestionBank,Grouping,UserDetails,UserQuiz,PMPQuestionBank,MusicBank,UserPackage,Constants
 from import_export.admin import ImportExportModelAdmin
 # Register your models here.
 # pip install django-import-export
@@ -13,6 +13,11 @@ class QuestionAdmin(ImportExportModelAdmin):
 class PMPQuestionAdmin(ImportExportModelAdmin):
     list_display = ('id','standard','subject','difficulty','marks','Question','answer_1','answer_2','answer_3','answer_4','answer_5','answer_6','answer_1_ind','answer_2_ind','answer_3_ind','answer_4_ind','answer_5_ind','answer_6_ind')
     list_editable = ('standard','subject','difficulty','marks','Question','answer_1','answer_2','answer_3','answer_4','answer_5','answer_6','answer_1_ind','answer_2_ind','answer_3_ind','answer_4_ind','answer_5_ind','answer_6_ind')
+
+@admin.register(MusicBank)
+class MusicBankAdmin(ImportExportModelAdmin):
+    list_display = ('id','title','movie','language','composer','imageUrl','notes','lyrics','localLyrics','noteSplit','sectionSplit','scale','raga')
+    list_editable = ('title','movie','language','composer','imageUrl','notes','lyrics','localLyrics','noteSplit','sectionSplit','scale','raga')
 
 @admin.register(Grouping)
 class GroupingAdmin(ImportExportModelAdmin):

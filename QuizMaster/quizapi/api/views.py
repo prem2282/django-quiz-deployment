@@ -14,7 +14,7 @@ UpdateAPIView,
 DestroyAPIView,
 )
 
-from quizapi.models import QuestionBank, Grouping, PMPQuestionBank, UserQuiz, UserDetails, UserPackage, Constants
+from quizapi.models import QuestionBank, Grouping, PMPQuestionBank, MusicBank, UserQuiz, UserDetails, UserPackage, Constants
 from django.contrib.auth import get_user_model
 User = get_user_model()
 
@@ -26,6 +26,9 @@ QuestionBankCreateSerializer,
 PMPQuestionBankSerializer,
 PMPQuestionBankIdSerializer,
 PMPQuestionBankCreateSerializer,
+MusicBankSerializer,
+MusicBankIdSerializer,
+MusicBankCreateSerializer,
 GroupingSerializer,
 GroupingBoardSerializer,
 GroupingStdSerializer,
@@ -82,9 +85,17 @@ class PMPQuestionBankCreateAPIView(CreateAPIView):
 
 class PMPQuestionBankListAPIView(ListAPIView):
     queryset = PMPQuestionBank.objects.all()
-    serializer_class = QuestionBankSerializer
+    serializer_class = PMPQuestionBankSerializer
 
 
+class MusicBankCreateAPIView(CreateAPIView):
+    queryset = MusicBank.objects.all()
+    serializer_class = MusicBankSerializer
+
+
+class MusicBankListAPIView(ListAPIView):
+    queryset = MusicBank.objects.all()
+    serializer_class = MusicBankSerializer
 
 class QuestionBankCreateAPIView(CreateAPIView):
     queryset = QuestionBank.objects.all()
@@ -137,6 +148,10 @@ class PMPQuestionBankDetailAPIView(RetrieveAPIView):
     queryset = PMPQuestionBank.objects.all()
     serializer_class = PMPQuestionBankSerializer
 
+class MusicBankDetailAPIView(RetrieveAPIView):
+    queryset = MusicBank.objects.all()
+    serializer_class = MusicBankSerializer
+
 class UserDetailsDetailAPIView(RetrieveAPIView):
     queryset = UserDetails.objects.all()
     serializer_class = UserDetailsSerializer
@@ -160,6 +175,10 @@ class QuestionBankUpdateAPIView(RetrieveUpdateAPIView):
 class PMPQuestionBankUpdateAPIView(RetrieveUpdateAPIView):
     queryset = PMPQuestionBank.objects.all()
     serializer_class = PMPQuestionBankSerializer
+
+class MusicBankUpdateAPIView(RetrieveUpdateAPIView):
+    queryset = MusicBank.objects.all()
+    serializer_class = MusicBankSerializer    
 
 class UserDetailsUpdateAPIView(RetrieveUpdateAPIView):
     queryset = UserDetails.objects.all()
@@ -186,6 +205,9 @@ class PMPQuestionBankDeleteAPIView(DestroyAPIView):
     queryset = PMPQuestionBank.objects.all()
     serializer_class = PMPQuestionBankSerializer
 
+class MusicBankDeleteAPIView(DestroyAPIView):
+    queryset = MusicBank.objects.all()
+    serializer_class = MusicBankSerializer
 
 class UserDetailsDeleteAPIView(DestroyAPIView):
     queryset = UserDetails.objects.all()

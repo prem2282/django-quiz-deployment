@@ -1,6 +1,6 @@
 from rest_framework.serializers import ModelSerializer
 
-from quizapi.models import QuestionBank, Grouping, UserDetails, UserQuiz, PMPQuestionBank, UserPackage, Constants
+from quizapi.models import QuestionBank, Grouping, UserDetails, UserQuiz, PMPQuestionBank,MusicBank ,UserPackage, Constants
 from django.contrib.auth import get_user_model
 User = get_user_model()
 
@@ -59,6 +59,20 @@ class PMPQuestionBankCreateSerializer(ModelSerializer):
         model = PMPQuestionBank
         fields = '__all__'
 
+class MusicBankSerializer(ModelSerializer):
+    class Meta:
+        model = MusicBank
+        fields = '__all__'
+
+class MusicBankIdSerializer(ModelSerializer):
+    class Meta:
+        model = MusicBank
+        fields = '__all__'
+
+class MusicBankCreateSerializer(ModelSerializer):
+    class Meta:
+        model = MusicBank
+        fields = '__all__'
 class QuestionBankSerializer(ModelSerializer):
     class Meta:
         model = QuestionBank

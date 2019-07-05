@@ -132,6 +132,23 @@ class PMPQuestionBank(models.Model):
     def __str__(self):
         return '%s | %s | %s' % (self.standard, self.subject, self.Question)
 
+class MusicBank(models.Model):
+    title = models.CharField(max_length=50)
+    movie = models.CharField(max_length=50, blank=True)
+    language = models.CharField(max_length=15, blank=True)
+    composer = models.CharField(max_length=15, blank=True)
+    imageUrl = models.URLField(max_length=1000, blank=True)
+    notes = models.CharField(max_length=10000)
+    lyrics = models.CharField(max_length=10000, blank=True)
+    localLyrics = models.CharField(max_length=10000, blank=True)
+    noteSplit = models.CharField(max_length=500, blank=True)
+    sectionSplit = models.CharField(max_length=500, blank=True)
+    scale = models.CharField(max_length=20, blank=True)
+    raga = models.CharField(max_length=20, blank=True)
+
+    def __str__(self):
+        return '%s | %s | %s' % (self.title, self.movie, self.language)
+
 class Grouping(models.Model):
     category = models.CharField(max_length=20,default='Academics')
     board = models.CharField(max_length=20)

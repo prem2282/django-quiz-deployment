@@ -19,6 +19,11 @@ from quizapi.api.views import (
     PMPQuestionBankUpdateAPIView,
     PMPQuestionBankCreateAPIView,
 
+    MusicBankListAPIView,
+    MusicBankDetailAPIView,
+    MusicBankDeleteAPIView,
+    MusicBankUpdateAPIView,
+    MusicBankCreateAPIView,
 
     UserDetailsListAPIView,
     UserDetailsDetailAPIView,
@@ -72,6 +77,13 @@ path('PMPQuestionList/create',PMPQuestionBankCreateAPIView.as_view(),name='PMPQu
 path('PMPQuestionList/<int:pk>',PMPQuestionBankDetailAPIView.as_view(),name='PMPQuestionBankDetailAPIView'),
 path('PMPQuestionList/edit/<int:pk>',PMPQuestionBankUpdateAPIView.as_view(),name='PMPQuestionBankUpdateAPIView'),
 path('PMPQuestionList/delete/<int:pk>',PMPQuestionBankDeleteAPIView.as_view(),name='PMPQuestionBankDeleteAPIView'),
+
+
+path('MusicList/',MusicBankListAPIView.as_view(),name='MusicBankListAPIView'),
+path('MusicList/create',MusicBankCreateAPIView.as_view(),name='MusicBankCreateAPIView'),
+path('MusicList/<int:pk>',MusicBankDetailAPIView.as_view(),name='MusicBankDetailAPIView'),
+path('MusicList/edit/<int:pk>',MusicBankUpdateAPIView.as_view(),name='MusicBankUpdateAPIView'),
+path('MusicList/delete/<int:pk>',MusicBankDeleteAPIView.as_view(),name='MusicBankDeleteAPIView'),
 
 path('UserDetails/',UserDetailsListAPIView.as_view(),name='UserDetailsListAPIView'),
 path('UserDetails/create',UserDetailsCreateAPIView.as_view(),name='UserDetailsCreateAPIView'),
