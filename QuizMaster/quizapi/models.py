@@ -143,7 +143,6 @@ class PMPQuestionBank(models.Model):
     def __str__(self):
         return '%s | %s | %s' % (self.standard, self.subject, self.Question)
 
-<<<<<<< HEAD
 class MusicBank(models.Model):
     title = models.CharField(max_length=50)
     movie = models.CharField(max_length=50, blank=True)
@@ -161,15 +160,7 @@ class MusicBank(models.Model):
     def __str__(self):
         return '%s | %s | %s' % (self.title, self.movie, self.language)
 
-class Grouping(models.Model):
-    category = models.CharField(max_length=20,default='Academics')
-    board = models.CharField(max_length=20)
-    standard = models.CharField(max_length=20)
-    subject = models.CharField(max_length=30)
-    lessonNum = models.PositiveIntegerField(default=1)
-    lessonName = models.CharField(max_length=50, blank=True)
-=======
->>>>>>> 490fbcbba8d2ecb59a79a0de42ab298e6ef99e55
+
 
 
 class UserDetails(models.Model):
