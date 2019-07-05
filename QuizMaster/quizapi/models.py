@@ -80,6 +80,17 @@ board_choice = (
 ("CBSE","CBSE"),
 )
 
+class Grouping(models.Model):
+    category = models.CharField(max_length=20,default='Academics')
+    board = models.CharField(max_length=20)
+    standard = models.CharField(max_length=20)
+    subject = models.CharField(max_length=30)
+    lessonNum = models.PositiveIntegerField(default=1)
+    lessonName = models.CharField(max_length=50, blank=True)
+
+    def __str__(self):
+        return '%s | %s | %s | %s | %s' % (self.category, self.board, self.standard, self.subject, self.lessonNum)
+
 class QuestionBank(models.Model):
     category = models.CharField(max_length=20,default='Academics')
     board = models.CharField(max_length=20,default='CBSE')
@@ -132,6 +143,7 @@ class PMPQuestionBank(models.Model):
     def __str__(self):
         return '%s | %s | %s' % (self.standard, self.subject, self.Question)
 
+<<<<<<< HEAD
 class MusicBank(models.Model):
     title = models.CharField(max_length=50)
     movie = models.CharField(max_length=50, blank=True)
@@ -156,12 +168,12 @@ class Grouping(models.Model):
     subject = models.CharField(max_length=30)
     lessonNum = models.PositiveIntegerField(default=1)
     lessonName = models.CharField(max_length=50, blank=True)
+=======
+>>>>>>> 490fbcbba8d2ecb59a79a0de42ab298e6ef99e55
 
-    def __str__(self):
-        return '%s | %s | %s | %s | %s' % (self.category, self.board, self.standard, self.subject, self.lessonNum)
 
 class UserDetails(models.Model):
-    userId = models.CharField(max_length=50)
+    userId = models.CharField(max_length=50,unique=True)
     userName = models.CharField(max_length=50,blank=True)
     userEmail = models.CharField(max_length=50,blank=True)
     imageUrl = models.CharField(max_length=500,blank=True)
@@ -173,7 +185,7 @@ class UserDetails(models.Model):
         return '%s | %s  ' % (self.userId, self.userName)
 
 class UserPackage(models.Model):
-    userId = models.CharField(max_length=50)
+    userId = models.CharField(max_length=50,blank=True)
     paymentGateway = models.CharField(max_length=20)
     packageId = models.CharField(max_length=20,blank=True)
     paymentId = models.CharField(max_length=200,blank=True)
@@ -187,8 +199,9 @@ class UserPackage(models.Model):
         return '%s | %s  ' % (self.userId, self.packageId)
 
 class UserQuiz(models.Model):
-    userId = models.CharField(max_length=50)
-    groupId = models.CharField(max_length=20,blank=True)
+    userId = models.CharField(max_length=50,blank=True)
+    groupId =  models.CharField(max_length=50,blank=True)
+    customId = models.CharField(max_length=50,blank=True)
     questionSet = models.CharField(max_length=500,blank=True)
     answerSet = models.CharField(max_length=500,blank=True)
     variableSet = models.CharField(max_length=500,blank=True)
