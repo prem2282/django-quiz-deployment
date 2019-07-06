@@ -42,5 +42,5 @@ class ConstantsAdmin(ImportExportModelAdmin):
 
 @admin.register(UserQuiz)
 class UserQuizAdmin(ImportExportModelAdmin):
-    list_display = ('id','userId','groupId','questionSet','answerSet','variableSet','selectedAnsIndex','score','updatedTime','quizStatus')
-    list_editable = ('userId','groupId','questionSet','answerSet','variableSet','selectedAnsIndex','score','updatedTime','quizStatus')
+    list_display = ('id','userId','groupId','customId','questionSet','answerSet','variableSet','selectedAnsIndex','score','updatedTime','quizStatus')
+    list_editable = ('userId','groupId','customId','questionSet','answerSet','variableSet','selectedAnsIndex','score','updatedTime','quizStatus')
