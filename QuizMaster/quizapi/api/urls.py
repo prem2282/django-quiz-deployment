@@ -25,6 +25,13 @@ from quizapi.api.views import (
     MusicBankUpdateAPIView,
     MusicBankCreateAPIView,
 
+    CodeBankListAPIView,
+    CodeBankListMenuAPIView,
+    CodeBankDetailAPIView,
+    CodeBankDeleteAPIView,
+    CodeBankUpdateAPIView,
+    CodeBankCreateAPIView,
+
     UserDetailsListAPIView,
     UserDetailsDetailAPIView,
     UserDetailsDeleteAPIView,
@@ -84,6 +91,14 @@ path('MusicList/create',MusicBankCreateAPIView.as_view(),name='MusicBankCreateAP
 path('MusicList/<int:pk>',MusicBankDetailAPIView.as_view(),name='MusicBankDetailAPIView'),
 path('MusicList/edit/<int:pk>',MusicBankUpdateAPIView.as_view(),name='MusicBankUpdateAPIView'),
 path('MusicList/delete/<int:pk>',MusicBankDeleteAPIView.as_view(),name='MusicBankDeleteAPIView'),
+
+
+path('CodeList/',CodeBankListAPIView.as_view(),name='CodeBankListAPIView'),
+path('CodeListMenu/',CodeBankListAPIView.as_view(),name='CodeBankListMenuAPIView'),
+path('CodeList/create',CodeBankCreateAPIView.as_view(),name='CodeBankCreateAPIView'),
+path('CodeList/<int:pk>',CodeBankDetailAPIView.as_view(),name='CodeBankDetailAPIView'),
+path('CodeList/edit/<int:pk>',CodeBankUpdateAPIView.as_view(),name='CodeBankUpdateAPIView'),
+path('CodeList/delete/<int:pk>',CodeBankDeleteAPIView.as_view(),name='CodeBankDeleteAPIView'),
 
 path('UserDetails/',UserDetailsListAPIView.as_view(),name='UserDetailsListAPIView'),
 path('UserDetails/create',UserDetailsCreateAPIView.as_view(),name='UserDetailsCreateAPIView'),

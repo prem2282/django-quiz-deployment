@@ -2,7 +2,7 @@ import graphene
 
 from graphene_django.types import DjangoObjectType
 
-from quizapi.models import QuestionBank, Grouping, PMPQuestionBank, UserQuiz, UserDetails, UserPackage, Constants
+from quizapi.models import QuestionBank, Grouping, PMPQuestionBank, CodeBank, UserQuiz, UserDetails, UserPackage, Constants
 
 
 class QuestionBankType(DjangoObjectType):
@@ -16,6 +16,10 @@ class GroupingType(DjangoObjectType):
 class PMPQuestionBankType(DjangoObjectType):
     class Meta:
         model = PMPQuestionBank
+
+class CodeBankType(DjangoObjectType):
+    class Meta:
+        model = CodeBank
 
 class UserQuizType(DjangoObjectType):
     class Meta:
@@ -34,6 +38,7 @@ class Query(object):
     all_grouping = graphene.List(GroupingType)
     all_PMPQuestionBank = graphene.List(PMPQuestionBankType)
     all_userQuiz = graphene.List(UserQuizType)
+    all_codeBank = graphene.List(CodeBankType)
     all_userDetails = graphene.List(UserDetailsType)
     all_userPackage = graphene.List(UserPackageType)
     userDetails = graphene.Field(UserDetailsType,userId=graphene.String())

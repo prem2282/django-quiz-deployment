@@ -14,7 +14,7 @@ UpdateAPIView,
 DestroyAPIView,
 )
 
-from quizapi.models import QuestionBank, Grouping, PMPQuestionBank, MusicBank, UserQuiz, UserDetails, UserPackage, Constants
+from quizapi.models import QuestionBank, Grouping, PMPQuestionBank, MusicBank, CodeBank, UserQuiz, UserDetails, UserPackage, Constants
 from django.contrib.auth import get_user_model
 User = get_user_model()
 
@@ -29,6 +29,9 @@ PMPQuestionBankCreateSerializer,
 MusicBankSerializer,
 MusicBankIdSerializer,
 MusicBankCreateSerializer,
+CodeBankSerializer,
+CodeBankIdSerializer,
+CodeBankCreateSerializer,
 GroupingSerializer,
 GroupingBoardSerializer,
 GroupingStdSerializer,
@@ -97,6 +100,19 @@ class MusicBankListAPIView(ListAPIView):
     queryset = MusicBank.objects.all()
     serializer_class = MusicBankSerializer
 
+class CodeBankCreateAPIView(CreateAPIView):
+    queryset = CodeBank.objects.all()
+    serializer_class = CodeBankSerializer
+
+
+class CodeBankListAPIView(ListAPIView):
+    queryset = CodeBank.objects.all().values("subject","level","section","seq_num",'title').distinct().order_by("seq_num")
+    serializer_class = CodeBankSerializer
+
+class CodeBankListMenuAPIView(ListAPIView):
+    queryset = CodeBank.objects.all()
+    serializer_class = CodeBankSerializer
+
 class QuestionBankCreateAPIView(CreateAPIView):
     queryset = QuestionBank.objects.all()
     serializer_class = QuestionBankSerializer
@@ -152,6 +168,10 @@ class MusicBankDetailAPIView(RetrieveAPIView):
     queryset = MusicBank.objects.all()
     serializer_class = MusicBankSerializer
 
+class CodeBankDetailAPIView(RetrieveAPIView):
+    queryset = CodeBank.objects.all()
+    serializer_class = CodeBankSerializer
+
 class UserDetailsDetailAPIView(RetrieveAPIView):
     queryset = UserDetails.objects.all()
     serializer_class = UserDetailsSerializer
@@ -179,6 +199,10 @@ class PMPQuestionBankUpdateAPIView(RetrieveUpdateAPIView):
 class MusicBankUpdateAPIView(RetrieveUpdateAPIView):
     queryset = MusicBank.objects.all()
     serializer_class = MusicBankSerializer    
+
+class CodeBankUpdateAPIView(RetrieveUpdateAPIView):
+    queryset = CodeBank.objects.all()
+    serializer_class = CodeBankSerializer    
 
 class UserDetailsUpdateAPIView(RetrieveUpdateAPIView):
     queryset = UserDetails.objects.all()
@@ -208,6 +232,10 @@ class PMPQuestionBankDeleteAPIView(DestroyAPIView):
 class MusicBankDeleteAPIView(DestroyAPIView):
     queryset = MusicBank.objects.all()
     serializer_class = MusicBankSerializer
+
+class CodeBankDeleteAPIView(DestroyAPIView):
+    queryset = CodeBank.objects.all()
+    serializer_class = CodeBankSerializer
 
 class UserDetailsDeleteAPIView(DestroyAPIView):
     queryset = UserDetails.objects.all()

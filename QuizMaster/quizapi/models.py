@@ -161,7 +161,26 @@ class MusicBank(models.Model):
         return '%s | %s | %s' % (self.title, self.movie, self.language)
 
 
-
+class CodeBank(models.Model):
+    subject = models.CharField(max_length=30)
+    level = models.PositiveIntegerField(default=1)
+    section = models.CharField(max_length=30)
+    seq_num = models.PositiveIntegerField(default=1)
+    title = models.CharField(max_length=50)
+    contributor = models.CharField(max_length=100,blank=True)
+    description_1 = models.CharField(max_length=1000,blank=True)
+    description_2 = models.CharField(max_length=1000,blank=True)
+    description_3 = models.CharField(max_length=1000,blank=True)
+    code_1 = models.CharField(max_length=2000,blank=True)
+    code_1_type = models.CharField(max_length=10,blank=True)
+    code_2 = models.CharField(max_length=2000,blank=True)
+    code_2_type = models.CharField(max_length=10,blank=True)  
+    code_3 = models.CharField(max_length=2000,blank=True)
+    code_3_type = models.CharField(max_length=10,blank=True)
+    code_4 = models.CharField(max_length=2000,blank=True)
+    code_4_type = models.CharField(max_length=10,blank=True)    
+    def __str__(self):
+        return '%s | %s | %s | %s | %s' % (self.subject, self.level, self.section, self.seq_num, self.title)
 
 class UserDetails(models.Model):
     userId = models.CharField(max_length=50,unique=True)

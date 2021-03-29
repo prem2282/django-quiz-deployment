@@ -1,5 +1,5 @@
 from django.contrib import admin
-from quizapi.models import QuestionBank,Grouping,UserDetails,UserQuiz,PMPQuestionBank,MusicBank,UserPackage,Constants
+from quizapi.models import QuestionBank,Grouping,UserDetails,UserQuiz,PMPQuestionBank,MusicBank,CodeBank,UserPackage,Constants
 from import_export.admin import ImportExportModelAdmin
 # Register your models here.
 # pip install django-import-export
@@ -18,6 +18,11 @@ class PMPQuestionAdmin(ImportExportModelAdmin):
 class MusicBankAdmin(ImportExportModelAdmin):
     list_display = ('id','title','movie','language','composer','imageUrl','notes','lyrics','localLyrics','noteSplit','sectionSplit','scale','raga')
     list_editable = ('title','movie','language','composer','imageUrl','notes','lyrics','localLyrics','noteSplit','sectionSplit','scale','raga')
+
+@admin.register(CodeBank)
+class CodeBankAdmin(ImportExportModelAdmin):
+    list_display = [field.name for field in CodeBank._meta.get_fields()]
+    list_editable = [field.name for field in CodeBank._meta.get_fields()[1:]]
 
 @admin.register(Grouping)
 class GroupingAdmin(ImportExportModelAdmin):
