@@ -106,7 +106,7 @@ class CodeBankCreateAPIView(CreateAPIView):
 
 
 class CodeBankListAPIView(ListAPIView):
-    queryset = CodeBank.objects.all().values("subject","level","section","seq_num",'title').distinct().order_by("seq_num")
+    queryset = CodeBank.objects.all().values("id","subject","level","section","seq_num",'title').distinct().order_by("seq_num")
     serializer_class = CodeBankSerializer
 
 class CodeBankListMenuAPIView(ListAPIView):
