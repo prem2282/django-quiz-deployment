@@ -153,7 +153,10 @@ class QuestionBankListAPIView(ListAPIView):
             queryset_final = queryset_list.filter(
             Q(id__in=q6)
             ).distinct()
-
+        elif (q1):
+            queryset_final = queryset_list.filter(
+            Q(category__iexact=q1)
+            ).distinct()
         return queryset_final
 
 class QuestionBankDetailAPIView(RetrieveAPIView):
